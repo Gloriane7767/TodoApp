@@ -1,66 +1,65 @@
 package com.gloriane;
 
-/*
- * Step 2: What it represents: A task created by someone.
- * These variables store task details
- */
+import java.time.LocalDate;
+
 public class TodoItem {
     private int id;
     private String title;
     private String taskDescription;
-    private MyDate deadline;
+    private LocalDate deadline;
     private boolean done;
     private Person creator;
 
     // Constructor: This constructor creates a task.
-    public TodoItem(int id, String title, String taskDescription, MyDate deadline, Person creator) {
+    public TodoItem(int id, String title, String taskDescription, LocalDate deadline, Person creator) {
         this.id = id;
         this.title = title;
         this.taskDescription = taskDescription;
-        this.deadline = deadline;
+        LocalDate today = LocalDate.now(); // 👈 get today’s date
+        this.deadline = today; // ✅ works fine now
         this.creator = creator;
         this.done = false; // Initially not done
     }
 
 
     // Getter methods
+
     public int getId() {
         return id;
     }
-
     public String getTitle() {
         return title;
     }
-
     public String getTaskDescription() {
         return taskDescription;
     }
-
-    public MyDate getDeadline() {
+    public LocalDate getDeadline() {
         return deadline;
     }
-
     public boolean isDone() {
         return done;
     }
-
     public Person getCreator() {
         return creator;
     }
 
     // Setter methods
-    // Makes sure the task deadline is not in the past.
-    // Set the task title, ensuring it's not empty or null
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setTitle(String title) {
         if (title == null || title.trim().isEmpty())  // add ()
             throw new IllegalArgumentException("Title should not be null or empty");
         this.title = title;
     }
 
-    // Set the task deadline, ensuring it's not in the past
-    public void setDeadline(MyDate deadline) {
-        MyDate today = new MyDate(2025, 4, 4);
-        if (deadline.isBefore(today)) throw new IllegalArgumentException("Deadline cannot be in the past");
+    public void setTaskDescription(String taskDescription) {
+        this.taskDescription = taskDescription;
+    }
+
+    public void setDeadline(LocalDate deadline) {
         this.deadline = deadline;
     }
 
@@ -72,8 +71,14 @@ public class TodoItem {
         this.creator = creator;
     }
     // Returns a short summary of the task.
-    public String getSummary() {
-        return "Task ID: " + id + ", Title: " + title + ", Due: " + deadline + ", Done: " + done;
+    // ===== NEW: Summary Method =====
+    public void getSummary() {
+        System.out.println("ID: " + id + " | Title: " + title + " | Deadline: " + deadline + " | Done: " + done);
+    }
+
+    // ===== NEW: Check if Task is Overdue =====
+    public boolean isOverdue() {
+        return LocalDate.now().isAfter(deadline);
     }
 }
 

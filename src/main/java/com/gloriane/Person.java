@@ -1,12 +1,6 @@
 package com.gloriane;
 
-/*
- * Step 1: A person who creates or is assigned to a task.
- * This class represents a person with a first name, last name, and email.
- * These are private fields, meaning only this class can access them directly. We use getters and setters to work with them from outside the class.
- */
-
-// Step 1: Create the Person Class
+// Step 1: Create the Person Class.These are private fields, meaning only this class can access.
     public class Person {
     private int id;
     private String firstName;
@@ -61,6 +55,10 @@ package com.gloriane;
     // Method to Returns the full name of the person by joining first and last name.
     public String getFullName() {
         return firstName + " " + lastName;
+    }
+
+    public void getSummary() {
+        System.out.println("Id " + "+" + "getFullName" + "+" + "email");
     }
 }
 

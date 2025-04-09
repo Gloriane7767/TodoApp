@@ -1,6 +1,9 @@
 package com.gloriane;
 
+import java.time.LocalDate;
+
 import java.util.Scanner;
+
 
 // What it represents: The main program that the user runs.
 public class Main {
@@ -86,8 +89,8 @@ public class Main {
             System.out.print("Enter task deadline (year): ");
             int year = Integer.parseInt(scanner.nextLine());
 
-            // Create a MyDate object using the entered day, month, and year
-            MyDate deadline = new MyDate(day, month, year);
+            // ✅ Use LocalDate instead of MyDate
+            LocalDate deadline = LocalDate.of(year, month, day);
 
             // Create a TodoItem (task) using the provided info
             TodoItem todoItem = new TodoItem(1, title, description, deadline, creator); // Now we create a TodoItem using the data we just gathered.
